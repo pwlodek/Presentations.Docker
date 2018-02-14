@@ -1,0 +1,16 @@
+version: "3"
+services:
+  web:
+    image: pwlodek/test:latest
+    deploy:
+      replicas: 15
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+    ports:
+      - "4000:80"
+    networks:
+      - webnet
+networks:
+  webnet:

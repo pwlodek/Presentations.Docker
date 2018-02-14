@@ -1,0 +1,11 @@
+version: '3'
+services:
+
+  # Rabbit MQ
+  web:
+    image: hello-docker-api
+    build: ./HelloDockerApi
+    deploy:
+      replicas: 2
+    ports:
+      - "8080:80"
