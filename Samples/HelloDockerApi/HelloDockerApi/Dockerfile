@@ -2,11 +2,14 @@
 WORKDIR /source
 ARG CONFIG
 
-# copy sources 
-COPY . .
+# copy *.csproj files 
+COPY *.csproj .
 
-# restore libraries
+# restore libraries and cache it
 RUN dotnet restore
+
+# copy the sources 
+COPY . .
 
 # build
 RUN dotnet publish --configuration ${CONFIG:-Debug} --output /app
