@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-pod-deployment
+  labels:
+    app: hello-pod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: hello-pod
+  template:
+    metadata:
+      name: hello-pod
+      labels:
+        name: hello-pod
+    spec:
+      containers:
+      - name: python-api
+        image: pwlodek/python-api
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi        
+        ports:
+        - containerPort: 80 # kubectl expose rs hello-pod-replica-set --name myservicefromrs --target-port=80 --type=NodePort
